@@ -31,3 +31,41 @@ func isUnique(str: String) -> Bool {
 }
 
 isUnique("hello")
+
+
+
+// given two strings, check to see if one string is a permutation of the other
+
+func isPermutation(str1: String, str2: String) -> Bool {
+    
+    let array1 = Array(str1.characters)
+    let array2 = Array(str2.characters)
+  
+    if array1.count != array2.count {
+        return false
+    } else {
+        return  array1.sort(<) == array2.sort(<) // compare arrays in abc order
+    }
+}
+
+isPermutation("cat", str2: "tac")
+isPermutation("cat", str2: "dog")
+isPermutation("caat", str2: "tacc")
+isPermutation("cat", str2: "at")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
