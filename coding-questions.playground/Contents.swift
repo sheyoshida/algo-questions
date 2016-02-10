@@ -55,6 +55,37 @@ isPermutation("cat", str2: "at")
 
 
 
+// remove duplicate values from array
+
+func removeDup(num: [Int]) -> [Int] {
+    
+    let setNum = Set(num)
+    let arrNum = Array(setNum)
+
+    return arrNum
+}
+removeDup([7, 5, 4, 4, 4, 5, 6, 7, 8])
+
+
+
+// remove the duplicate values from an array, preserve original order of array
+
+func removeDuplicates(num: [Int]) -> [Int] {
+    
+    var setNum = Set<Int>()
+    var arrNum = Array<Int>()
+    
+    for i in num {
+        if !setNum.contains(i) {
+            arrNum.insert(i, atIndex: arrNum.endIndex)
+            setNum.insert(i)
+        }
+    }
+    return arrNum
+}
+removeDuplicates([42, 31, 22, 55, 44, 44])
+
+
 
 
 
