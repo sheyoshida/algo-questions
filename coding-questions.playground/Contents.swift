@@ -55,7 +55,7 @@ isPermutation("cat", str2: "at")
 
 
 
-// remove duplicate values from array
+// remove duplicate values from array (disregard final order)
 
 func removeDup(num: [Int]) -> [Int] {
     
@@ -64,7 +64,19 @@ func removeDup(num: [Int]) -> [Int] {
 
     return arrNum
 }
-removeDup([7, 5, 4, 4, 4, 5, 6, 7, 8])
+removeDup([42, 31, 22, 22, 55, 44, 44])
+
+
+// remove duplicate values from array and return sorted array
+
+func removeDupAndSort(num: [Int]) -> [Int] {
+    
+    let setNum = Set(num)
+    let arrNum = Array(setNum)
+    
+    return arrNum.sort(<)
+}
+removeDupAndSort([42, 31, 22, 22, 55, 44, 44])
 
 
 
@@ -72,7 +84,7 @@ removeDup([7, 5, 4, 4, 4, 5, 6, 7, 8])
 
 func removeDuplicates(num: [Int]) -> [Int] {
     
-    var setNum = Set<Int>()
+    var setNum = Set<Int>() // create empty set and array
     var arrNum = Array<Int>()
     
     for i in num {
@@ -83,7 +95,17 @@ func removeDuplicates(num: [Int]) -> [Int] {
     }
     return arrNum
 }
-removeDuplicates([42, 31, 22, 55, 44, 44])
+removeDuplicates([42, 31, 22, 22, 55, 44, 44])
+
+
+
+// reverse an integer
+
+func reverseInt(num: Int) -> Int {
+
+    
+    return 0
+}
 
 
 
