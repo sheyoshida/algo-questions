@@ -144,6 +144,10 @@ factorial(3)
 
 // create function to call the previous function
 
+// take in string, return letter that appears the most frequently
+
+
+
 
 
 
