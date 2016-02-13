@@ -55,8 +55,30 @@ isPermutation("cat", str2: "at")
 
 
 
+// given a string, replace spaces with %20
+
+func swapSpace(str: String) -> String {
+
+    return str.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+}
+swapSpace("Hello, World!")
 
 
+
+// given a string, write a function to see if it is a permutation of a palindrome
+
+func manyPermutation(str1: String, str2: String) -> Bool {
+    
+    let array1 = Array(str1.characters)// ["t", "a", "c", "o", " ", "c", "a", "t"]  -> {["t", "a
+    let array2 = Array(str2.characters)
+    
+    if array1.count != array2.count {
+        return false
+    } else {
+        return  array1.sort(<) == array2.sort(<) // compare arrays in abc order
+    }
+}
+manyPermutation("taco cat", str2: "atco cta")
 
 
 
