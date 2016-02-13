@@ -133,8 +133,16 @@ func manyPermutation(str1: String, str2: String) -> Bool {
 manyPermutation("taco cat", str2: "atco cta")
 
 
+// determine n!
+func factorial(num: Int) -> Int {
+    if num == 0 {
+        return 1
+    }
+    return num * (factorial(num - 1))
+}
+factorial(3)
 
-
+// create function to call the previous function
 
 
 
