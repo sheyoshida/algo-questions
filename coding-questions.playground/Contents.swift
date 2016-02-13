@@ -146,6 +146,20 @@ factorial(3)
 
 // take in string, return letter that appears the most frequently
 
+// implement a binary tree
+
+// what is a grand dispatch queue?
+
+// what is merge sort
+
+// what is difference between merge/bubble sort
+
+// fizzbuzz
+
+// tic tac toe
+
+// what is runtime for built in swift array.sort(<)
+
 
 
 
