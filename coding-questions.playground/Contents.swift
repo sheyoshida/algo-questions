@@ -144,8 +144,6 @@ factorial(3)
 
 // create function to call the previous function
 
-// take in string, return letter that appears the most frequently
-
 // implement a binary tree
 
 // what is a grand dispatch queue?
@@ -160,7 +158,34 @@ factorial(3)
 
 // what is runtime for built in swift array.sort(<)
 
-
+// take in string, return letter that appears the most frequently
+//func mostCommonLetter(word: String) -> String? {
+//    
+//    var tracker: Dictionary<String,Int> = [:]
+//    
+//    var count: Int = 1
+//    let wordArray = word.characters.map {String($0)} // convert to array of strings
+//    
+//    var letter: String? = nil
+//    var largestNumber = 0
+//    
+//    for letter in wordArray {
+//        
+//        if !tracker.keys.contains(letter) {
+//            tracker[letter] = count
+//        } else {
+//            
+//        }
+//  
+//    }
+//    
+//    print(tracker)
+//
+//    return letter
+//}
+//    
+//
+//mostCommonLetter("heellloe")
 
 
 
