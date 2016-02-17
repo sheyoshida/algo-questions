@@ -146,7 +146,7 @@ factorial(3)
 
 
 
-// what is runtime for swift's array.sort(<)
+// what is runtime for swift's array.sort()?
 // Answer: O(n log n)
 
 
@@ -216,6 +216,7 @@ minValue([10, 5, 9, 7, 3, 2, 37, 4])
 
 
 
+
 // given an array, return min and max values:
 func minAndMax(var num: [Int]) -> [Int] {
     
@@ -223,7 +224,7 @@ func minAndMax(var num: [Int]) -> [Int] {
     
     
     for i in 0...num.count-1 { // 1) sort the array
-        for j in 0...num.count-1 { // bubble sort: O(n^2)
+        for j in 0...num.count-1 { // bubble sort: O(n^2) <--- inefficient!
             if num[i] < num[j] {
                 let temp = num[i]
                 num[i] = num[j]
@@ -241,6 +242,57 @@ func minAndMax(var num: [Int]) -> [Int] {
     return minElementAndMaxElement
 }
 minAndMax([5, 3, 7, 9, 21, 2])
+
+
+
+// revised: return min and max from array:
+func findMinAndMax(nums: [Int]) -> [Int] {
+    
+    var lowestAndHighest: Array<Int> = []
+    var lowest: Int = nums[0]
+    var highest: Int = nums[0]
+    
+    for num in nums { // O(n) <--- faster
+        
+        if lowest > num {
+            lowest = num
+        } else {
+            if highest < num {
+                highest = num
+            }
+        }
+        
+        lowestAndHighest.append(lowest) // append at index 0
+        lowestAndHighest.insert(highest, atIndex: lowestAndHighest.endIndex) // append at index 1
+        
+    return lowestAndHighest
+}
+findMinAndMax([5, 3, 7, 9, 21, 2])
+    
+
+
+// check two arrays for common elements
+func containCommonItems(arr1: [Int], arr2: [Int]) -> [Int] {
+    
+    var doubles: Array<Int> = []
+    for i in arr1 {
+        for j in arr2 {
+            if i == j {
+                doubles.append(i)
+            }
+        }
+        return doubles
+    }
+containCommonItems([1, 2, 3, 4, 5], arr2: [6, 7, 8, 9, 10]) // O(n^2)
+
+
+
+// check array for missing number in consecutive numbers, return that number (to reuse numbers)
+
+// assign that number to a customer
+
+
+
 
 
 
