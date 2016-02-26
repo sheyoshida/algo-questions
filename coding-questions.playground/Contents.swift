@@ -288,6 +288,59 @@ func containCommonItems(arr1: [Int], arr2: [Int]) -> [Int] {
 containCommonItems([1, 2, 3, 4, 5], arr2: [6, 7, 8, 9, 10]) // O(n^2)
 
 
+
+// write algorithm that prints from 1-100 and then back down again
+
+// 1) with two for loops:
+func printNums() {
+    for i in 1...10 {
+        print(i)
+        if i == 10 {
+            printNumsDown()
+        }
+    }
+}
+
+func printNumsDown() {
+    for i in (1...9).reverse() {
+        print (i)
+    }
+}
+// printNums()
+
+// 2) recursively:
+
+func printUp(n: Int) {
+    if n == 100 {
+        print(n)
+        printDown(n - 1)
+        return
+    }
+    print(n)
+    printUp(n + 1)
+}
+
+func printDown(n: Int) {
+    if n == 1 {
+        print(n)
+        return
+    }
+    print(n)
+    printDown(n - 1)
+}
+//printUp(1)
+
+
+
+
+
+
+
+
+
+
+
+
 // check array for missing number in consecutive numbers, return that number (to reuse numbers)
 
 // assign that number to a customer
