@@ -342,13 +342,14 @@ would be:
 
 [[7, 4, 1],
  [8, 5, 2], 
- [7, 8, 9]]
+ [9, 6, 3]]
 */
 
 func rotateMatrix90Degrees(inout matrix: [[Int]]) {
     
     var columns = [[Int]]()
     
+    // for each row
     for i in 0..<matrix.count {
         columns.append(getColumn(matrix, col: i))
     }
@@ -371,9 +372,12 @@ func getColumn(matrix: [[Int]], col: Int) -> [Int] {
 }
 
 var myArray = [[1, 2, 3],[4, 5, 6],[7, 8, 9]]
-myArray
-
 rotateMatrix90Degrees(&myArray)
+
+
+
+
+
 
 
 
