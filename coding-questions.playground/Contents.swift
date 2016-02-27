@@ -34,6 +34,7 @@ isUnique("hello")
 
 
 
+
 // given two strings, check to see if one string is a permutation of the other
 
 func isPermutation(str1: String, str2: String) -> Bool {
@@ -101,21 +102,21 @@ removeDuplicates([42, 31, 22, 22, 55, 44, 44])
 
 
 
-// reverse an integer
-func reverseInt(num: Int) -> Int {
-
-    var intArr: Array<Int> = [] // placeholder array
-    
-    var numStr = String(num)
-    var strArr = Array(numStr.characters)
-    
-    for item in strArr {
-//        intArr.insert(item, atIndex: 0)
-    }
-    
-    return 0
-}
-reverseInt(543)
+//// reverse an integer
+//func reverseInt(num: Int) -> Int {
+//
+//    var intArr: Array<Int> = [] // placeholder array
+//    
+//    var numStr = String(num)
+//    var strArr = Array(numStr.characters)
+//    
+//    for item in strArr {
+////        intArr.insert(item, atIndex: 0)
+//    }
+//    
+//    return 0
+//}
+//reverseInt(543)
 
 
 
@@ -146,7 +147,7 @@ factorial(3)
 
 
 
-// what is runtime for swift's array.sort(<)
+// what is runtime for swift's array.sort()?
 // Answer: O(n log n)
 
 
@@ -216,6 +217,7 @@ minValue([10, 5, 9, 7, 3, 2, 37, 4])
 
 
 
+
 // given an array, return min and max values:
 func minAndMax(var num: [Int]) -> [Int] {
     
@@ -223,7 +225,7 @@ func minAndMax(var num: [Int]) -> [Int] {
     
     
     for i in 0...num.count-1 { // 1) sort the array
-        for j in 0...num.count-1 { // bubble sort: O(n^2)
+        for j in 0...num.count-1 { // bubble sort: O(n^2) <--- inefficient!
             if num[i] < num[j] {
                 let temp = num[i]
                 num[i] = num[j]
@@ -244,7 +246,146 @@ minAndMax([5, 3, 7, 9, 21, 2])
 
 
 
+// revised: return min and max from array:
+func findMinAndMax(nums: [Int]) -> [Int] {
+    
+    var lowestAndHighest: Array<Int> = []
+    var lowest: Int = nums[0]
+    var highest: Int = nums[0]
+    
+    for num in nums { // O(n) <--- faster
+        
+        if lowest > num {
+            lowest = num
+        } else {
+            if highest < num {
+                highest = num
+            }
+        }
+        
+        lowestAndHighest.append(lowest) // append at index 0
+        lowestAndHighest.insert(highest, atIndex: lowestAndHighest.endIndex) // append at index 1
+    }
+    return lowestAndHighest
+}
+findMinAndMax([5, 3, 7, 9, 21, 2])
+    
 
+
+// check two arrays for common elements
+func containCommonItems(arr1: [Int], arr2: [Int]) -> [Int] {
+    
+    var doubles: Array<Int> = []
+    for i in arr1 {
+        for j in arr2 {
+            if i == j {
+                doubles.append(i)
+                }
+            }
+        }
+    return doubles
+    }
+containCommonItems([1, 2, 3, 4, 5], arr2: [6, 7, 8, 9, 10]) // O(n^2)
+
+
+
+// write algorithm that prints from 1-100 and then back down again
+
+// 1) with two for loops:
+func printNums() {
+    for i in 1...10 {
+        print(i)
+        if i == 10 {
+            printNumsDown()
+        }
+    }
+}
+
+func printNumsDown() {
+    for i in (1...9).reverse() {
+        print (i)
+    }
+}
+// printNums()
+
+// 2) recursively:
+
+func printUp(n: Int) {
+    if n == 100 {
+        print(n)
+        printDown(n - 1)
+        return
+    }
+    print(n)
+    printUp(n + 1)
+}
+
+func printDown(n: Int) {
+    if n == 1 {
+        print(n)
+        return
+    }
+    print(n)
+    printDown(n - 1)
+}
+//printUp(1)
+
+
+
+// rotate matrix 90 degrees
+/*
+[[1, 2, 3], 
+ [4, 5, 6], 
+ [7, 8, 9]]
+
+would be: 
+
+[[7, 4, 1],
+ [8, 5, 2], 
+ [7, 8, 9]]
+*/
+
+func rotateMatrix90Degrees(inout matrix: [[Int]]) {
+    
+    var columns = [[Int]]()
+    
+    for i in 0..<matrix.count {
+        columns.append(getColumn(matrix, col: i))
+    }
+    for i in 0..<matrix.count {
+        matrix[i] = columns[i]
+    }
+}
+
+func getColumn(matrix: [[Int]], col: Int) -> [Int] {
+    
+    var colArray = [Int]()
+    
+    // run through the column from the bottom up
+    // add values to colArray
+    
+    for i in 0..<matrix.count {
+        colArray.append(matrix[matrix.count - i - 1][col])
+    }
+    return colArray
+}
+
+var myArray = [[1, 2, 3],[4, 5, 6],[7, 8, 9]]
+myArray
+
+rotateMatrix90Degrees(&myArray)
+
+
+
+
+
+
+
+
+
+// check array for missing number in consecutive numbers, return that number (to reuse numbers)
+
+// assign that number to a customer
 
 
 // take in string, return letter that appears the most frequently
@@ -277,49 +418,39 @@ minAndMax([5, 3, 7, 9, 21, 2])
 //mostCommonLetter("heellloe")
 
 
-/*
-adding / multiplying / traversing multi dimensional arrays
-caesar cypher
-tic tac toe
-Check to see if string is balanced (())
-Given three numbers return the median
-Fibonacci - given an idx return the fib value at idx
-given a jumble: String and knownWords: [String] return list of potential words that the string may be.
-given a string, return the letter that appears most frequently
 
-Given two int arrays v1 and v2 return 1 if  v1 is greater  -1 if v2 is greater and 0 if they are equal. V1 and V2 are like software versions
-
-Given two numbers add them up and return an array or string version of the result ie: 5 + 12 = [1,7] or “17”
-
-how many golf balls could you fit in a school bus?
-
-Given an amount of money to convert to change. Write an algorithm that returns the optimal arrangement of change, that is, an array with the values of the coins returned to the user. The optimal array contains the least number of coins needed for the arrangement (think vending machine).
-
-You are given an unsorted array containing the numbers 1-100 inclusive and one additional random number.  Find the value of that number
-
-Given an array of integers, determine if the array is in sorted order.
-
-Sort an algorithm in n^2 time.  Attempt to write the algorithm from scratch
-
-Sort an algorithm in nlog(n) time.  Attempt to write the algorithm from scratch
-
-Given a non-negative int n, return the sum of its digits recursively (no loops). Note that mod (%) by 10 yields the rightmost digit (126 % 10 is 6), while divide (/) by 10 removes the rightmost digit (126 / 10 is 12).  (from http://codingbat.com/prob/p163932)
-
-Given two arrays of integers, compute the pair of values (one value in each array) with the smallest (non-negative) difference.  Return the difference. (from Cracking the Coding Interview p. 181)
-
-EXAMPLE:
-Input:{1,3,15,11,2},{23,127,235,19,8}
-Output: 3 (because 11-8=3)
-
-Design an algorithm to identify if a player has won a game of tic-tac-toe (from Cracking the Coding Interview p. 181)
-
-
-*/
-
-
-
-
-
-
-
+//adding / multiplying / traversing multi dimensional arrays
+//caesar cypher
+//tic tac toe
+//Check to see if string is balanced (())
+//Given three numbers return the median
+//Fibonacci - given an idx return the fib value at idx
+//given a jumble: String and knownWords: [String] return list of potential words that the string may be.
+//given a string, return the letter that appears most frequently
+//
+//Given two int arrays v1 and v2 return 1 if  v1 is greater  -1 if v2 is greater and 0 if they are equal. V1 and V2 are like software versions
+//
+//Given two numbers add them up and return an array or string version of the result ie: 5 + 12 = [1,7] or “17”
+//
+//how many golf balls could you fit in a school bus?
+//
+//Given an amount of money to convert to change. Write an algorithm that returns the optimal arrangement of change, that is, an array with the values of the coins returned to the user. The optimal array contains the least number of coins needed for the arrangement (think vending machine).
+//
+//You are given an unsorted array containing the numbers 1-100 inclusive and one additional random number.  Find the value of that number
+//
+//Given an array of integers, determine if the array is in sorted order.
+//
+//Sort an algorithm in n^2 time.  Attempt to write the algorithm from scratch
+//
+//Sort an algorithm in nlog(n) time.  Attempt to write the algorithm from scratch
+//
+//Given a non-negative int n, return the sum of its digits recursively (no loops). Note that mod (%) by 10 yields the rightmost digit (126 % 10 is 6), while divide (/) by 10 removes the rightmost digit (126 / 10 is 12).  (from http://codingbat.com/prob/p163932)
+//
+//Given two arrays of integers, compute the pair of values (one value in each array) with the smallest (non-negative) difference.  Return the difference. (from Cracking the Coding Interview p. 181)
+//
+//EXAMPLE:
+//Input:{1,3,15,11,2},{23,127,235,19,8}
+//Output: 3 (because 11-8=3)
+//
+//Design an algorithm to identify if a player has won a game of tic-tac-toe (from Cracking the Coding Interview p. 181)
 
