@@ -8,10 +8,33 @@ func isBal(str: String) -> Bool {
     var count = 0
     return !str.characters.contains { ($0 == "[" ? ++count : --count) < 0 } && count == 0
 }
-
 isBal("[[[]]]") // true
 isBal("[]][[]") // false
 
+// or, with a for loop:
+func checkParen(str: String) -> Bool {
+    var leftCount = 0
+    var rightCount = 0
+    var parenArray: [Character] = []
+    
+    for element in [Character](str.characters) {
+        if element == "(" {
+            leftCount++
+            parenArray.insert(element, atIndex: parenArray.endIndex)
+        } else if element == ")" {
+            rightCount++
+            parenArray.insert(element, atIndex: parenArray.endIndex)
+        }
+        if rightCount == leftCount && parenArray[0] != ")" {
+            return true
+        }
+    }
+   return false
+}
+checkParen("(hello(world))") // true
+checkParen("((hello(world))") // false
+checkParen(")hello(world)(") // false
+checkParen("(hello))((world)") // should be false, revise with a stack 
 
 
 // chapter 1 - implement an algorithm to determine is a string has all unique characters.
@@ -20,16 +43,13 @@ isBal("[]][[]") // false
 func isUnique(str: String) -> Bool {
     
     let strArray = Array(str.characters) // convert string to array of characters
-    let strSet = Set(strArray)
+    let strSet = Set(strArray) //
     
     if strSet.count != strArray.count {
-        print("boo - there are duplicate characters in \(str).")
         return false
     }
-    print("yay - there are no duplicate characters in \(str)!")
     return true
 }
-
 isUnique("hello")
 
 
@@ -44,7 +64,6 @@ func isPermutation(str1: String, str2: String) -> Bool {
   
     return  array1.sort(<) == array2.sort(<) // sort and compare arrays in abc order
 }
-
 isPermutation("cat", str2: "tac") // test it!
 isPermutation("cat", str2: "dog")
 isPermutation("caat", str2: "tacc")
@@ -374,6 +393,23 @@ func getColumn(matrix: [[Int]], col: Int) -> [Int] {
 var myArray = [[1, 2, 3],[4, 5, 6],[7, 8, 9]]
 rotateMatrix90Degrees(&myArray)
 
+
+// or sussman's code: 
+
+//func rotateMatrix(matrix: [[Int]]) -> [[Int]] {
+//    var countOfRows = matrix[0].count
+//    var countOfColumns = matrix.count
+//    var output = []
+//    
+//    for rowIndex = (countOfRows - 1; rowIndex >=0; rowIndex --) {
+//        var outCol = []
+//        for inCol in matrix {
+//            outCol.append(inCol[rowIndex])
+//        }
+//        output.append(col)
+//    }
+//    return output
+//}
 
 
 
