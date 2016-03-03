@@ -412,13 +412,27 @@ rotateMatrix90Degrees(&myArray)
 //}
 
 
+// print values from array in reverse, on one line:
+func printItemsInReverse(array: [Int]) {
+    for (var i = array.count-1; i >= 0; i--) {
+        print(array[i], terminator:" ")
+    }
+}
+var arr1 = [4, 6, 2, 1, 8, 7]
+printItemsInReverse(arr1)
 
 
-
-
-
-
-
+// take array of strigns, return sum of values: 
+func addValues(array: [String]) -> Int {
+var sum = 0
+    var intArr = array.map { Int($0)! } // convert array of strings to ints
+    for (var i = 0; i < array.count; i++) {
+        sum += intArr[i]
+    }
+    return sum
+}
+var arr2 = ["2", "3", "4", "5", "6"]
+addValues(arr2)
 
 
 
