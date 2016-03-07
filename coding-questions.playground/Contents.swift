@@ -121,6 +121,11 @@ removeDuplicates([42, 31, 22, 22, 55, 44, 44])
 
 
 
+// take an array of integers, return the number of values that are printed more than once. 
+// ie: [1, 2, 5, 3, 5, 3, 3] -> 2
+
+
+
 //// reverse an integer
 //func reverseInt(num: Int) -> Int {
 //
