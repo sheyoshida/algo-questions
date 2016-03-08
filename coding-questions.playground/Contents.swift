@@ -123,6 +123,51 @@ removeDuplicates([42, 31, 22, 22, 55, 44, 44])
 
 // take an array of integers, return the number of values that are printed more than once. 
 // ie: [1, 2, 5, 3, 5, 3, 3] -> 2
+func duplicateCount(num: [Int]) -> Int {
+    
+    var set = Set<Int>()
+    var setCount = Set<Int>()
+    
+    for item in num {
+        if !set.contains(item) {
+            set.insert(item)
+        } else {
+            setCount.insert(item)
+        }
+    }
+    return setCount.count
+}
+let nums = [1, 2, 5, 3, 5, 3, 3]
+duplicateCount(nums)
+
+
+
+//func isValidCard(card: String) -> Bool {
+//    
+//let reversed = String(card.characters.reverse())
+//    
+//    // find "a" = sum of all digits at odd positions:
+//    // break reversed into an array: 
+//    
+//let reversedArray = Array(reversed.characters)
+//    for item in reversedArray {
+//        
+//            }
+//    
+//    
+//    // find "b" = multiply each even number by 2:
+//    
+//    
+
+    
+    
+    
+    
+    return true
+}
+let string = "1234567890123456"
+isValidCard(string)
+
 
 
 
