@@ -56,7 +56,6 @@ isUnique("hello")
 
 
 // given two strings, check to see if one string is a permutation of the other
-
 func isPermutation(str1: String, str2: String) -> Bool {
     
     let array1 = Array(str1.characters)
@@ -159,14 +158,14 @@ duplicateCount(nums)
 //    
 //    
 
+
     
     
     
-    
-    return true
-}
-let string = "1234567890123456"
-isValidCard(string)
+//    return true
+//}
+//let string = "1234567890123456"
+//isValidCard(string)
 
 
 
@@ -190,7 +189,6 @@ isValidCard(string)
 
 
 // given a string, write a function to see if it is a permutation of a palindrome
-
 func manyPermutation(str1: String, str2: String) -> Bool {
     
     let array1 = Array(str1.characters)// ["t", "a", "c", "o", " ", "c", "a", "t"]  -> {["t", "a
@@ -472,6 +470,7 @@ var arr1 = [4, 6, 2, 1, 8, 7]
 printItemsInReverse(arr1)
 
 
+
 // take array of strigns, return sum of values: 
 func addValues(array: [String]) -> Int {
 var sum = 0
@@ -483,6 +482,11 @@ var sum = 0
 }
 var arr2 = ["2", "3", "4", "5", "6"]
 addValues(arr2)
+
+
+
+
+
 
 
 
