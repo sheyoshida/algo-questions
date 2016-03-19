@@ -6,7 +6,7 @@ import Foundation
 func isBal(str: String) -> Bool {
     
     var count = 0
-    return !str.characters.contains { ($0 == "[" ? ++count : --count) < 0 } && count == 0
+    return !str.characters.contains { ($0 == "[" ? ++count : --count) < 0 } && count == 0 // closure + ternary operator
 }
 isBal("[[[]]]") // true
 isBal("[]][[]") // false
@@ -38,8 +38,6 @@ checkParen("(hello))((world)") // should be false, revise with a stack
 
 
 // chapter 1 - implement an algorithm to determine is a string has all unique characters.
-// what if you can not use additional data strucs?
-
 func isUnique(str: String) -> Bool {
     
     let strArray = Array(str.characters) // convert string to array of characters
@@ -52,6 +50,23 @@ func isUnique(str: String) -> Bool {
 }
 isUnique("hello")
 
+
+// what if you can not use additional data strucs?
+func isUnique2(str: String) -> Bool {
+    
+    var testArray = Array<Character>() // create container array for unique values
+    
+    // loop through array of characters
+    for c: Character in str.characters { // convert string to array of characters
+        if !testArray.contains(c) { // if container array does not contain letter
+            testArray.append(c) // add letter to container array
+        }
+    }
+    // compare count of container array to original string of characters
+    return testArray.count == str.characters.count
+}
+isUnique2("hello")
+isUnique2("hi")
 
 
 
