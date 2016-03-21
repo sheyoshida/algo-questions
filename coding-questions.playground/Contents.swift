@@ -510,13 +510,13 @@ rotateMatrix90Degrees(&myArray)
 
 
 // print values from array in reverse, on one line:
-func printItemsInReverse(array: [Int]) {
-    for (var i = array.count-1; i >= 0; i--) {
-        print(array[i], terminator:" ")
+func printReverse(array: [Int]) {
+    for i in array.reverse() {
+        print(i, terminator:" ")
     }
 }
 var arr1 = [4, 6, 2, 1, 8, 7]
-printItemsInReverse(arr1)
+printReverse(arr1)
 
 
 
