@@ -37,35 +37,6 @@ checkParen(")hello(world)(") // false
 checkParen("(hello))((world)") // should be false, revise with a stack...
 
 
-// check parenthesis with a STACK!
-
-struct Stack<T> { // <T> = generic
-    var items:[T]
-    
-    mutating func push(element: T) {
-        items.append(element)
-    }
-    mutating func pop() -> T {
-        return items.removeLast()
-    }
-    func count() -> Int {
-        return items.count
-    }
-}
-
-func isPalindrome(word: String) -> Bool {
-    var stack = Stack<Character>(items: Array(word.characters))
-    var reverseStack = Stack<Character>(items: Array(word.characters).reverse())
-    
-    for _ in 0..<stack.count() {
-        if stack.pop() != reverseStack.pop() {
-            return false
-        }
-    }
-    return true
-}
-
-
 // chapter 1 - implement an algorithm to determine is a string has all unique characters.
 func isUnique(str: String) -> Bool {
     
@@ -279,6 +250,35 @@ func manyPermutation(str1: String, str2: String) -> Bool {
     }
 }
 manyPermutation("taco cat", str2: "atco cta")
+
+
+// or... check palindrome with a STACK!
+
+struct Stack<T> { // <T> = generic
+    var items:[T]
+    
+    mutating func push(element: T) {
+        items.append(element)
+    }
+    mutating func pop() -> T {
+        return items.removeLast()
+    }
+    func count() -> Int {
+        return items.count
+    }
+}
+
+func isPalindrome(word: String) -> Bool {
+    var stack = Stack<Character>(items: Array(word.characters))
+    var reverseStack = Stack<Character>(items: Array(word.characters).reverse())
+    
+    for _ in 0..<stack.count() {
+        if stack.pop() != reverseStack.pop() {
+            return false
+        }
+    }
+    return true
+}
 
 
 // return n!
