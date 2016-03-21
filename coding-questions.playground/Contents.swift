@@ -56,7 +56,6 @@ func isUnique2(str: String) -> Bool {
     
     var testArray = Array<Character>() // create container array for unique values
     
-    // loop through array of characters
     for c: Character in str.characters { // convert string to array of characters
         if !testArray.contains(c) { // if container array does not contain letter
             testArray.append(c) // add letter to container array
@@ -156,50 +155,85 @@ duplicateCount(nums)
 
 
 
-//func isValidCard(card: String) -> Bool {
-//    
-//let reversed = String(card.characters.reverse())
-//    
-//    // find "a" = sum of all digits at odd positions:
-//    // break reversed into an array: 
-//    
-//let reversedArray = Array(reversed.characters)
-//    for item in reversedArray {
-//        
-//            }
-//    
-//    
-//    // find "b" = multiply each even number by 2:
-//    
-//    
+// check credit card number validity:
+var sumA = 0
+var sumB = 0
 
+// 1) reverse order of digits
+func reverseString(card: String) {
+    var reversedArray: String
+    reversedArray = String(card.characters.reverse())
+    addNumbers(reversedArray)
+    grabEvenNumbers(reversedArray)
+}
 
-    
-    
-    
-//    return true
-//}
-//let string = "1234567890123456"
-//isValidCard(string)
+// 2) take odd numbers from left to right and add up to form sumA
+func addNumbers(reversedString: String) -> Int {
+    var count = 1
+    for i: Character in reversedString.characters {
+        if count % 2 != 0 {
+            let string = String(i)
+            let int = Int(string)
+            sumA += int!
+        }
+     count++
+    }
+    sumA
+    return sumA
+}
 
+// 3) take even numbers and multiply by 2 and add to array
+func grabEvenNumbers(reversedString: String) {
+    var count = 1
+    var evenNumbers = Array<Int>()
+    for i: Character in reversedString.characters {
+        if count % 2 == 0 {
+            let string = String(i)
+            let int = Int(string)
+            evenNumbers.append(int! * 2)
+        }
+        count++
+    }
+    evenNumbers
+    reduceToSingleDigits(evenNumbers)
+}
 
+// 4) reduce double digits to single number by adding digits
+func reduceToSingleDigits(myArray: [Int]) {
+    var reducedArray = Array<Int>()
+    for i in myArray {
+        if i > 9 {
+           var num = 0
+            num += i % 10
+            num += i / 10
+            reducedArray.append(num)
+        } else {
+            reducedArray.append(i)
+        }
+    }
+    addNumbers(reducedArray)
+}
 
+// 5) find sum of sumB
+func addNumbers(reducedNums: [Int]) {
+    for i in reducedNums {
+        sumB += i
+    }
+    aPlusb(sumA, sumB: sumB)
+}
 
-//// reverse an integer
-//func reverseInt(num: Int) -> Int {
-//
-//    var intArr: Array<Int> = [] // placeholder array
-//    
-//    var numStr = String(num)
-//    var strArr = Array(numStr.characters)
-//    
-//    for item in strArr {
-////        intArr.insert(item, atIndex: 0)
-//    }
-//    
-//    return 0
-//}
-//reverseInt(543)
+// 6) find sum of sumA + sumB and check to see if % 10
+func aPlusb(sumA: Int, sumB: Int) -> Bool {
+    let sum = sumA + sumB
+    if sum % 10 == 0 {
+        return true
+    } else {
+        return false
+    }
+}
+
+let myString = "1234567890123456"
+reverseString(myString)
 
 
 
