@@ -37,6 +37,33 @@ checkParen(")hello(world)(") // false
 checkParen("(hello))((world)") // should be false, revise with a stack...
 
 
+// set up stack struct: 
+
+struct Stack<T> { // <T> = generic
+    var items:[T]
+    
+    mutating func push(element: T) {
+        items.append(element)
+    }
+    mutating func pop() -> T {
+        return items.removeLast()
+    }
+    func count() -> Int {
+        return items.count
+    }
+}
+
+//func checkParenth(string: String) -> Bool {
+//    var stack = Stack<Character>(items: Array(string.characters))
+//    
+//    for c: Character in string.characters {
+//        
+//    }
+//    return true
+//}
+
+
+
 // chapter 1 - implement an algorithm to determine is a string has all unique characters.
 func isUnique(str: String) -> Bool {
     
@@ -254,7 +281,7 @@ manyPermutation("taco cat", str2: "atco cta")
 
 // or... check palindrome with a STACK!
 
-struct Stack<T> { // <T> = generic
+struct Stacky<T> { // <T> = generic
     var items:[T]
     
     mutating func push(element: T) {
@@ -269,8 +296,8 @@ struct Stack<T> { // <T> = generic
 }
 
 func isPalindrome(word: String) -> Bool {
-    var stack = Stack<Character>(items: Array(word.characters))
-    var reverseStack = Stack<Character>(items: Array(word.characters).reverse())
+    var stack = Stacky<Character>(items: Array(word.characters))
+    var reverseStack = Stacky<Character>(items: Array(word.characters).reverse())
     
     for _ in 0..<stack.count() {
         if stack.pop() != reverseStack.pop() {
@@ -560,6 +587,19 @@ var sum = 0
 }
 var arr2 = ["2", "3", "4", "5", "6"]
 addValues(arr2)
+
+
+// create function that determines n power of n
+func powerOfN(number: Int, power: Int) -> Int {
+    var sum = 1
+    for _ in 1...power { // O(n^2)
+    sum *= number
+    }
+    return sum
+}
+powerOfN(2, power: 4)
+
+
 
 
 
