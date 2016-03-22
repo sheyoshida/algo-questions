@@ -592,12 +592,25 @@ addValues(arr2)
 // create function that determines n power of n
 func powerOfN(number: Int, power: Int) -> Int {
     var sum = 1
+    
+    if power == 0 {
+        return 1
+    }
+    
     for _ in 1...power { // O(n^2)
     sum *= number
     }
+    
     return sum
 }
 powerOfN(2, power: 4)
+powerOfN(0, power: 4) // 0
+powerOfN(1, power: 4) // 1
+powerOfN(2, power: 1) // 2
+powerOfN(2, power: 0) // 1
+
+
+
 
 
 
