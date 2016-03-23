@@ -299,8 +299,8 @@ func isPalindrome(word: String) -> Bool {
     var stack = Stacky<Character>(items: Array(word.characters))
     var reverseStack = Stacky<Character>(items: Array(word.characters).reverse())
     
-    for _ in 0..<stack.count() {
-        if stack.pop() != reverseStack.pop() {
+    for _ in 0..<stack.count() { // O(n)
+        if stack.pop() != reverseStack.pop() { // O(1)
             return false
         }
     }
@@ -370,7 +370,7 @@ func minValue(var numbers: [Int]) -> Int {
     
 //    numbers = numbers.sort() // 1) if we can use a sort function: O(n log n)
 //    numbers.minElement() // 2) or just ask for min element: O(n)
-//    let minNum = numbers.reduce(Int.max, combine: { min($0, $1)}) // 3) or use reduce
+//    let minNum = numbers.reduce(Int.max, combine: { min($0, $1) }) // 3) or use reduce
     
     for i in 0...numbers.count-1 {
         for j in 0...numbers.count-1 { // O(n^2)
@@ -589,11 +589,11 @@ var arr2 = ["2", "3", "4", "5", "6"]
 addValues(arr2)
 
 
-// create function that determines n power of n
+// create function that determines n to the power of n
 func powerOfN(number: Int, power: Int) -> Int {
     var sum = 1
     
-    if power == 0 {
+    if power == 0 { // O(1)
         return 1
     }
     
@@ -603,22 +603,46 @@ func powerOfN(number: Int, power: Int) -> Int {
     
     return sum
 }
-powerOfN(2, power: 4)
+// test it:
+powerOfN(2, power: 4) // 16
 powerOfN(0, power: 4) // 0
 powerOfN(1, power: 4) // 1
 powerOfN(2, power: 1) // 2
 powerOfN(2, power: 0) // 1
 
 
+// take in string, return letter that appears the most frequently
+func mostCommonLetter(word: String) -> String {
 
+    var tracker: Dictionary<Character,Int> = [:]
+    let commonLetter: String
+    
+    for letter: Character in word.characters {
+        if !tracker.keys.contains(letter) {
+            tracker[letter] = 1
+        } else {
+            for (_, value) in tracker {
+                tracker[letter] = value + 1
+            }
+        }
+    }
+    commonLetter = findCommonLetter(tracker)
+    return commonLetter
+}
 
+func findCommonLetter(dictionary: [Character: Int]) -> String {
+    var max = 1
+    var letter = " "
 
-
-
-
-
-
-
+    for (key, value) in dictionary {
+        if value > max {
+            max = value
+            letter = String(key)
+        }
+    }
+return letter
+}
+mostCommonLetter("heelllpppp") // test it
 
 
 
@@ -626,42 +650,9 @@ powerOfN(2, power: 0) // 1
 
 // assign that number to a customer
 
-
-// take in string, return letter that appears the most frequently
-//func mostCommonLetter(word: String) -> String? {
-//    
-//    var tracker: Dictionary<String,Int> = [:]
-//    
-//    var count: Int = 1
-//    let wordArray = word.characters.map {String($0)} // convert to array of strings
-//    
-//    var letter: String? = nil
-//    var largestNumber = 0
-//    
-//    for letter in wordArray {
-//        
-//        if !tracker.keys.contains(letter) {
-//            tracker[letter] = count
-//        } else {
-//            
-//        }
-//  
-//    }
-//    
-//    print(tracker)
-//
-//    return letter
-//}
-//    
-//
-//mostCommonLetter("heellloe")
-
-
-
 //adding / multiplying / traversing multi dimensional arrays
 //caesar cypher
 //tic tac toe
-//Check to see if string is balanced (())
 //Given three numbers return the median
 //Fibonacci - given an idx return the fib value at idx
 //given a jumble: String and knownWords: [String] return list of potential words that the string may be.
