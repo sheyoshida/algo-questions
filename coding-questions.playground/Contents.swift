@@ -646,8 +646,47 @@ mostCommonLetter("heelllpppp meee") // test it
 
 
 
-// check array for missing number in consecutive numbers, return that number (to reuse numbers)
+// track the lowest number in a stack
+class MinStack {
+    
+    var minStack = Array<Int>()
+    var allStack = Array<Int>()
+    
+    func push(number: Int) {
+        allStack.append(number)
+        if minStack.count == 0 || number <= minStack.last {
+            minStack.append(number)
+        }
+    }
+    func pop() -> Int {
+        if allStack.last == minStack.last {
+            minStack.removeLast()
+        }
+        return allStack.removeLast()
+    }
+    func peek(number: Int) -> Int{
+        return allStack.last!
+    }
+    func min() -> Int {
+        return minStack.last!
+    }
+}
 
+var myStuff = MinStack()
+
+myStuff.push(17)
+myStuff.push(41)
+myStuff.push(2)
+myStuff.push(6)
+myStuff.push(2)
+
+print(myStuff.allStack)
+print(myStuff.minStack)
+
+
+
+
+// check array for missing number in consecutive numbers, return that number (to reuse numbers)
 // assign that number to a customer
 
 //adding / multiplying / traversing multi dimensional arrays
@@ -656,8 +695,6 @@ mostCommonLetter("heelllpppp meee") // test it
 //Given three numbers return the median
 //Fibonacci - given an idx return the fib value at idx
 //given a jumble: String and knownWords: [String] return list of potential words that the string may be.
-//given a string, return the letter that appears most frequently
-//
 //Given two int arrays v1 and v2 return 1 if  v1 is greater  -1 if v2 is greater and 0 if they are equal. V1 and V2 are like software versions
 //
 //Given two numbers add them up and return an array or string version of the result ie: 5 + 12 = [1,7] or “17”
