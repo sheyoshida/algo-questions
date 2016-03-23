@@ -611,11 +611,11 @@ powerOfN(2, power: 1) // 2
 powerOfN(2, power: 0) // 1
 
 
+
 // take in string, return letter that appears the most frequently
 func mostCommonLetter(word: String) -> String {
 
     var tracker: Dictionary<Character,Int> = [:]
-    let commonLetter: String
     
     for letter: Character in word.characters {
         if !tracker.keys.contains(letter) {
@@ -626,11 +626,11 @@ func mostCommonLetter(word: String) -> String {
             }
         }
     }
-    commonLetter = findCommonLetter(tracker)
+    let commonLetter = findLetter(tracker)
     return commonLetter
 }
 
-func findCommonLetter(dictionary: [Character: Int]) -> String {
+func findLetter(dictionary: [Character: Int]) -> String {
     var max = 1
     var letter = " "
 
@@ -642,7 +642,7 @@ func findCommonLetter(dictionary: [Character: Int]) -> String {
     }
 return letter
 }
-mostCommonLetter("heelllpppp") // test it
+mostCommonLetter("heelllpppp meee") // test it
 
 
 
