@@ -1,28 +1,17 @@
 import Foundation
 
-// 1) check to see if collection of brackets is balanced
-// what if there are multiple types of brackets?
-
-func isBal(str: String) -> Bool {
-    
-    var count = 0
-    return !str.characters.contains { ($0 == "[" ? ++count : --count) < 0 } && count == 0 // closure + ternary operator
-}
-isBal("[[[]]]") // true
-isBal("[]][[]") // false
-
-// or, with a for loop:
+// Check to see if collection of brackets is balanced
 func checkParen(str: String) -> Bool {
     var leftCount = 0
     var rightCount = 0
-    var parenArray: [Character] = []
+    var parenArray: [Character] = [] // empty array of chars
     
     for element in [Character](str.characters) {
         if element == "(" {
-            leftCount++
+            leftCount = leftCount + 1
             parenArray.insert(element, atIndex: parenArray.endIndex)
         } else if element == ")" {
-            rightCount++
+            rightCount = rightCount + 1
             parenArray.insert(element, atIndex: parenArray.endIndex)
         }
         if rightCount == leftCount && parenArray[0] != ")" {
@@ -35,40 +24,16 @@ checkParen("(hello(world))") // true
 checkParen("((hello(world))") // false
 checkParen(")hello(world)(") // false
 checkParen("(hello))((world)") // should be false, revise with a stack...
-
-
-// set up stack struct: 
-
-struct Stack<T> { // <T> = generic
-    var items:[T]
-    
-    mutating func push(element: T) {
-        items.append(element)
-    }
-    mutating func pop() -> T {
-        return items.removeLast()
-    }
-    func count() -> Int {
-        return items.count
-    }
-}
-
-//func checkParenth(string: String) -> Bool {
-//    var stack = Stack<Character>(items: Array(string.characters))
-//    
-//    for c: Character in string.characters {
-//        
-//    }
-//    return true
-//}
+// alternate question: what if there are multiple types of brackets?
 
 
 
-// chapter 1 - implement an algorithm to determine is a string has all unique characters.
+// Implement an algorithm to determine is a string has all unique characters.
+
 func isUnique(str: String) -> Bool {
     
     let strArray = Array(str.characters) // convert string to array of characters
-    let strSet = Set(strArray) //
+    let strSet = Set(strArray)
     
     if strSet.count != strArray.count {
         return false
@@ -76,6 +41,7 @@ func isUnique(str: String) -> Bool {
     return true
 }
 isUnique("hello")
+
 
 
 // what if you can not use additional data strucs?
@@ -182,7 +148,7 @@ duplicateCount(nums)
 
 
 
-// check credit card number validity:
+// Very Long Algo Question - check credit card number validity by following steps:
 var sumA = 0
 var sumB = 0
 
@@ -203,7 +169,7 @@ func addNumbers(reversedString: String) -> Int {
             let int = Int(string)
             sumA += int!
         }
-     count++
+     count = count + 1
     }
     sumA
     return sumA
@@ -219,7 +185,7 @@ func grabEvenNumbers(reversedString: String) {
             let int = Int(string)
             evenNumbers.append(int! * 2)
         }
-        count++
+        count = count + 1
     }
     evenNumbers
     reduceToSingleDigits(evenNumbers)
@@ -258,7 +224,6 @@ func aPlusb(sumA: Int, sumB: Int) -> Bool {
         return false
     }
 }
-
 let myString = "1234567890123456"
 reverseString(myString)
 
@@ -306,6 +271,7 @@ func isPalindrome(word: String) -> Bool {
     }
     return true
 }
+
 
 
 // return n!
@@ -366,48 +332,47 @@ fizzBuzz(1, max: 100)
 
 // given an array, return the minimum value
 
-func minValue(var numbers: [Int]) -> Int {
+func minValue(numbers: [Int]) -> Int {
     
-//    numbers = numbers.sort() // 1) if we can use a sort function: O(n log n)
+    let sortedNumbers = numbers.sort() // 1) if we can use a sort function: O(n log n)
 //    numbers.minElement() // 2) or just ask for min element: O(n)
 //    let minNum = numbers.reduce(Int.max, combine: { min($0, $1) }) // 3) or use reduce
     
-    for i in 0...numbers.count-1 {
-        for j in 0...numbers.count-1 { // O(n^2)
-            
-            if numbers[i] < numbers[j] {
-//              swap(&numbers[i], &numbers[j]) // 4) swap is cool!
-                let temp = numbers[i] // bubble sort: O(n^2)
-                numbers[i] = numbers[j]
-                numbers[j] = temp
-            }
-        }
-    }
-    return numbers[0]
+//    for i in 0...numbers.count-1 {
+//        for j in 0...numbers.count-1 { // O(n^2)
+//            
+//            if numbers[i] < numbers[j] {
+////              swap(&numbers[i], &numbers[j]) // 4) swap is cool!
+//                let temp = numbers[i] // bubble sort: O(n^2)
+//                numbers[i] = numbers[j]
+//                numbers[j] = temp
+//            }
+//        }
+//    }
+    return sortedNumbers[0]
 }
 minValue([10, 5, 9, 7, 3, 2, 37, 4])
 
 
 
-
 // given an array, return min and max values:
-func minAndMax(var num: [Int]) -> [Int] {
+func minAndMax(num: [Int]) -> [Int] {
     
     var minElementAndMaxElement: Array<Int> = [] // new array to return values
+    let sortedArray = num.sort(<) // O(n log n) = excellent
     
+//    for i in 0...num.count-1 { // 1) sort the array
+//        for j in 0...num.count-1 { // bubble sort: O(n^2) <--- inefficient!
+//            if num[i] < num[j] {
+//                let temp = num[i]
+//                num[i] = num[j] // this is deprecated...
+//                num[j] = temp
+//            }
+//        }
+//    }
     
-    for i in 0...num.count-1 { // 1) sort the array
-        for j in 0...num.count-1 { // bubble sort: O(n^2) <--- inefficient!
-            if num[i] < num[j] {
-                let temp = num[i]
-                num[i] = num[j]
-                num[j] = temp
-            }
-        }
-    }
-    
-    let firstItem = num.first
-    let lastItem = num.last
+    let firstItem = sortedArray.first
+    let lastItem = sortedArray.last
     
     minElementAndMaxElement.append(firstItem!) // 2) add first and last items to array
     minElementAndMaxElement.append(lastItem!)
@@ -457,7 +422,7 @@ func containCommonItems(arr1: [Int], arr2: [Int]) -> [Int] {
         }
     return doubles
     }
-containCommonItems([1, 2, 3, 4, 5], arr2: [6, 7, 8, 9, 10]) // O(n^2)
+containCommonItems([1, 2, 3, 7, 6], arr2: [6, 7, 8, 9, 10]) // O(n^2)
 
 
 
@@ -547,23 +512,6 @@ var myArray = [[1, 2, 3],[4, 5, 6],[7, 8, 9]]
 rotateMatrix90Degrees(&myArray)
 
 
-// or sussman's code: 
-
-//func rotateMatrix(matrix: [[Int]]) -> [[Int]] {
-//    var countOfRows = matrix[0].count
-//    var countOfColumns = matrix.count
-//    var output = []
-//    
-//    for rowIndex = (countOfRows - 1; rowIndex >=0; rowIndex --) {
-//        var outCol = []
-//        for inCol in matrix {
-//            outCol.append(inCol[rowIndex])
-//        }
-//        output.append(col)
-//    }
-//    return output
-//}
-
 
 // print values from array in reverse, on one line:
 func printReverse(array: [Int]) {
@@ -578,15 +526,17 @@ printReverse(arr1)
 
 // take array of strigns, return sum of values: 
 func addValues(array: [String]) -> Int {
-var sum = 0
-    var intArr = array.map { Int($0)! } // convert array of strings to ints
-    for (var i = 0; i < array.count; i++) {
-        sum += intArr[i]
+    var sum = 0
+    let intArr = array.map { Int($0)! } // convert array of strings to ints
+    
+    for i in intArr {
+        sum = sum + i
     }
     return sum
 }
 var arr2 = ["2", "3", "4", "5", "6"]
 addValues(arr2)
+
 
 
 // create function that determines n to the power of n
